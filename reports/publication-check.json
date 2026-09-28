@@ -1,7 +1,7 @@
 {
   "project": "failover-forge",
-  "text_files_checked": 25,
-  "history_blobs_checked": 0,
+  "text_files_checked": 26,
+  "history_blobs_checked": 26,
   "findings": [],
   "limitations": "Pattern-based check, not proof of absence of secrets. Authored sample data and source licenses reviewed separately."
 }

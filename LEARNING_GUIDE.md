@@ -23,11 +23,15 @@ Follow the README installation block, then: Run python demo.py. It serves from t
 
 ## Five interview questions
 
-1. **What problem does this project solve, and what is its unit of work?** Explain measure local recovery under service failure, identify reliability learners as the audience, and trace one concrete example through the files above. Use the demonstration output rather than hypothetical impact.
-2. **Why did you choose the first design decision?** Start two real local HTTP processes and wait for readiness before injecting failure. Show the corresponding implementation and a test that would fail if that property were removed.
-3. **How do you protect correctness when inputs or execution change?** Terminate only the owned primary process and route the next client request to the secondary. Explain the relevant invalid-input or edge-case test and distinguish a checked property from an untested assumption.
-4. **How do you make results inspectable and reproducible?** Measure failover and restart-to-ready durations with a monotonic clock and always clean up child processes. Point to actual outputs and recorded commands. Explain why a successful example is weaker evidence than a tested boundary or independently reconciled total.
-5. **What would you improve before real deployment or real-data use?** Single-host, stateless client-side fallback. No load-balancer process, replicated database, cloud availability-zone failure or data-loss measurement. One local run cannot establish an SLA; RPO is not applicable. Choose one limitation, describe the missing evidence, and propose a measurable acceptance check rather than promising production readiness.
+1. **What failure is injected?** The demonstration starts two owned HTTP subprocesses and terminates the primary. A client then tries the secondary and the primary is restarted.
+
+2. **Where does failover happen?** In sequential client fallback logic. There is no load balancer or DNS change, so it demonstrates a bounded availability mechanism rather than a complete distributed failover system.
+
+3. **What does the recovery timing measure?** Elapsed time for the local experiment’s failure detection, fallback and restart observations. It depends on the machine and request behavior and is not an SLA.
+
+4. **Can you report a recovery point objective?** No. These services are stateless and do not replicate business data. An RPO claim would need a storage and replication model that this project does not have.
+
+5. **How are unrelated processes protected?** The harness manages only subprocesses it created and retains their handles. It does not search for and terminate arbitrary processes by name or port.
 
 ## Independent exercise
 
@@ -41,6 +45,6 @@ The implementation was developed with substantial AI assistance under Abhijith V
 
 Suggested factual bullet after personally validating the demo:
 
-- Implemented and validated measure local recovery under service failure using Python · HTTP · SQLite, with two real local http processes and documented correctness checks and limitations.
+- Built a reproducible local failure-injection harness that terminates an owned primary HTTP process, measures client fallback and records restart observations.
 
 Use [VERIFICATION.md](VERIFICATION.md) to add only measured numbers. Do not claim production traffic, users, savings, upstream acceptance or cloud deployment without corresponding evidence.
