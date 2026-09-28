@@ -1,0 +1,47 @@
+{
+  "details": {
+    "data_loss": "not measured; service is stateless",
+    "events": [
+      {
+        "phase": "healthy",
+        "served_by": "primary"
+      },
+      {
+        "phase": "primary terminated",
+        "primary_error": "URLError",
+        "served_by": "secondary"
+      },
+      {
+        "phase": "primary restarted",
+        "served_by": "primary"
+      }
+    ],
+    "failover_ms": 0.393,
+    "mode": "local HTTP process experiment",
+    "request_attempts": 3,
+    "restart_to_ready_ms": 27.939,
+    "rpo": "not applicable",
+    "topology": "same host; sequential client-side fallback; not a proxy or multi-region system"
+  },
+  "metrics": {
+    "Environment": "same-host processes",
+    "Measured failover": "0.393 ms",
+    "Restart to ready": "27.939 ms"
+  },
+  "notice": "One measured local run. Timing depends on this machine and is not an SLA or a cloud benchmark.",
+  "rows": [
+    {
+      "phase": "healthy",
+      "served_by": "primary"
+    },
+    {
+      "phase": "primary terminated",
+      "primary_error": "URLError",
+      "served_by": "secondary"
+    },
+    {
+      "phase": "primary restarted",
+      "served_by": "primary"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "slug": "failover-forge",
+  "fresh_venv": "work/clean-envs/failover-forge",
+  "fresh_checkout": "work/clean/failover-forge",
+  "passed": true,
+  "failure": null,
+  "runtime": "Python 3.12.14",
+  "model_training": null
+}

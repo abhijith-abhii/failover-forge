@@ -1,0 +1,24 @@
+{
+  "mode": "local HTTP process experiment",
+  "failover_ms": 0.393,
+  "restart_to_ready_ms": 27.939,
+  "events": [
+    {
+      "phase": "healthy",
+      "served_by": "primary"
+    },
+    {
+      "phase": "primary terminated",
+      "served_by": "secondary",
+      "primary_error": "URLError"
+    },
+    {
+      "phase": "primary restarted",
+      "served_by": "primary"
+    }
+  ],
+  "request_attempts": 3,
+  "data_loss": "not measured; service is stateless",
+  "rpo": "not applicable",
+  "topology": "same host; sequential client-side fallback; not a proxy or multi-region system"
+}
